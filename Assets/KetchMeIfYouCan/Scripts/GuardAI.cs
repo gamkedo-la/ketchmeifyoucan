@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public enum AIType { FreeMovement, FixedMovement }
 public enum AIState { Idle, Walk, Wait, PlayerFound }
 
-public class EnemyAI : MonoBehaviour
+public class GuardAI : MonoBehaviour
 {
     public GameObject m_Player;
     public float m_EnemySpeed = 1.4f;
@@ -15,7 +15,6 @@ public class EnemyAI : MonoBehaviour
     public int m_CurrentPatrolDestination = 0;
     public int m_NextPatrolDestination = 0;
     public float m_MaxSightDistance = 10.0f;
-//  public float m_MaxDestinationDistance = 10.0f;
 
     public AIType m_AIType = AIType.FixedMovement;
     public AIState m_AIState = AIState.Idle;

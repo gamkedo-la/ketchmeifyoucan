@@ -8,6 +8,8 @@ TagManager:
   - PickUp
   - Damageable
   - Stealable
+  - Stolen
+  - Guard
   layers:
   - Default
   - TransparentFX

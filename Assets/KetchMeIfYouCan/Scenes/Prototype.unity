@@ -5566,6 +5566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HUDText: {fileID: 1556410549}
   m_Player: {fileID: 632919268}
+  m_Guard: {fileID: 1328846973}
 --- !u!43 &242842161
 Mesh:
   m_ObjectHideFlags: 0
@@ -16721,7 +16722,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh11334
+  m_Name: pb_Mesh11358
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -17417,7 +17418,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh11566
+  m_Name: pb_Mesh11588
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -17905,6 +17906,10 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1298682748}
+--- !u!1 &1328846973 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100002, guid: acc1b707ccdfd1f4f922b7953e580756, type: 3}
+  m_PrefabInternal: {fileID: 153202352}
 --- !u!43 &1347259349
 Mesh:
   m_ObjectHideFlags: 0
