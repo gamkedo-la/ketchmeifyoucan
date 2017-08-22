@@ -10,6 +10,7 @@ TagManager:
   - Guard
   - Environment
   - Stolen
+  - SecurityCamera
   layers:
   - Default
   - TransparentFX
