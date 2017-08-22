@@ -9,6 +9,7 @@ TagManager:
   - Stealable
   - Guard
   - Environment
+  - Stolen
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Debug
   - 
   - 
   - 
