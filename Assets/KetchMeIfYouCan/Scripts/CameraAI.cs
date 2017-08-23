@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class CameraAI : MonoBehaviour
 {
+    public Transform m_player;
+
     public float m_Speed = 0.25f;
     public float m_MaxAngle = 45.0f;
 
+    private FieldOfView fov;
+
     private Vector3 pointA;
     private Vector3 pointB;
+
+    private void Awake() {
+        fov = GetComponent<FieldOfView>();
+    }
 
     void Start()
     {
@@ -19,6 +27,10 @@ public class CameraAI : MonoBehaviour
     void Update()
     {
         RotateCamera();
+
+        if (fov.visibleTargets.Contains(m_player)) {
+            Debug.Log("Player is with the field of view of a security camera.");
+        }
     }
 
     private void RotateCamera()
