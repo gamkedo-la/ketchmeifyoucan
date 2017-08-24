@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraAI : MonoBehaviour
+public class CameraMovement : MonoBehaviour
 {
     public Transform m_player;
 

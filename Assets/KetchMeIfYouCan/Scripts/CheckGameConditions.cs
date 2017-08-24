@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class CheckForLoot : MonoBehaviour
+public class CheckGameConditions : MonoBehaviour
 {
     public PlayerInteract m_playerInteract;
     public int m_MinLootItems = 3;

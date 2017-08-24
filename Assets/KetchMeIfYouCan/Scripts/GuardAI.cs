@@ -14,7 +14,6 @@ public class GuardAI : MonoBehaviour
     public GameObject[] m_PatrolDestinations;
     public int m_CurrentPatrolDestination = 0;
     public int m_NextPatrolDestination = 0;
-    public float m_MaxSightDistance = 10.0f;
 
     public AIType m_AIType = AIType.FixedMovement;
     public AIState m_AIState = AIState.Idle;
@@ -68,7 +67,8 @@ public class GuardAI : MonoBehaviour
             if (m_AIState == AIState.PlayerFound)
             {
                 Debug.Log("Player caught!");
-                //Animate guard
+                Debug.Log("Animate guard");
+                //Play guard surprised animation
             }
         }
     }
