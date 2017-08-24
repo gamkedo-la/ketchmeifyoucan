@@ -26,6 +26,5 @@ public class CheckForPlayer : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         CheckSight();
-        Debug.Log("Guard spotted " + other);
     }
 }
