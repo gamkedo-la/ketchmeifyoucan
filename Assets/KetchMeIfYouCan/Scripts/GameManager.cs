@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public static GameManager m_Instance;
     public FirstPersonController m_FPSController;
     public Text m_HUDText;
+    public List<GameObject> m_StealableItems = new List<GameObject>();
+    public GameObject[] m_ItemsToSteal;
+    public int m_NumberOfItemsToSteal = 3;
 
     private void Awake()
     {
@@ -21,6 +24,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        ChooseRandomObjects(3);
     }
 
     public static void DisplayTextHUD(string message, float length)
@@ -47,5 +55,20 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         m_Instance.m_HUDText.text = "";
         SceneManager.LoadScene(0);
+    }
+
+    private static void ChooseRandomObjects(int numObjToSteal)
+    {
+        m_Instance.m_ItemsToSteal = new GameObject[numObjToSteal];
+
+        for (int i = 0; i < numObjToSteal; i++)
+        {
+            var randomIndex = Random.Range(0, m_Instance.m_StealableItems.Count);
+            m_Instance.m_ItemsToSteal[i] = m_Instance.m_StealableItems[randomIndex];
+            m_Instance.m_ItemsToSteal[i].tag = "GoalItem";
+            m_Instance.m_StealableItems.RemoveAt(randomIndex);
+        }
+
+        Debug.Log("Your objective is to steal: " + m_Instance.m_ItemsToSteal[0].name + ", " + m_Instance.m_ItemsToSteal[1].name + ", " + m_Instance.m_ItemsToSteal[2].name);
     }
 }

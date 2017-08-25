@@ -7,8 +7,8 @@ public class PlayerInteract : MonoBehaviour
 {
     public float m_MaxInteractDistance = 50.0f;
     public List<GameObject> m_StolenObjects;
-    [HideInInspector] public bool stealingNow;
-    public GameObject stolenItem;
+    //public bool m_StealingNow = false;
+    //public GameObject m_StolenItem;
 
     private void Awake()
     {
@@ -28,14 +28,16 @@ public class PlayerInteract : MonoBehaviour
             
             if (Physics.Raycast(transform.position, transform.forward, out hit, m_MaxInteractDistance))
             {
-                if (hit.transform.gameObject.CompareTag("Stealable"))
+                if (hit.transform.gameObject.CompareTag("Stealable") || hit.transform.gameObject.CompareTag("GoalItem"))
                 {
-                    stolenItem = hit.transform.gameObject;
-                    Debug.Log("Stole " + hit.transform.gameObject.name);
                     var pickedUpItem = hit.transform.gameObject;
                     pickedUpItem.SetActive(false);
-                    m_StolenObjects.Add(pickedUpItem);
-                    stealingNow = true;
+                    Debug.Log("Stole " + hit.transform.gameObject.name);
+
+                    if (pickedUpItem.tag == "GoalItem")
+                    {
+                        m_StolenObjects.Add(pickedUpItem);
+                    }
                 }
             }
         }

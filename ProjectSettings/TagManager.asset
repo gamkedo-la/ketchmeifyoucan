@@ -9,8 +9,8 @@ TagManager:
   - Stealable
   - Guard
   - Environment
-  - Stolen
   - SecurityCamera
+  - GoalItem
   layers:
   - Default
   - TransparentFX

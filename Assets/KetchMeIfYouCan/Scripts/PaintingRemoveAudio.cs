@@ -14,22 +14,22 @@ public class PaintingRemoveAudio : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        PlayerInteract playerStealingScript = PlayerGO.GetComponent<PlayerInteract>();
+	//void Update () {
+ //       PlayerInteract playerStealingScript = PlayerGO.GetComponent<PlayerInteract>();
         
-        if (playerStealingScript.stealingNow)
-        {
-            if (playerStealingScript.stolenItem.name == "Painting")
-            {
-                myAudio.clip = stealPaintingClip;
-            }
-            if (playerStealingScript.stolenItem.name == "DisplayCase")
-            {
-                myAudio.clip = stealCaseClip;
-            }
+ //       if (playerStealingScript.m_StealingNow)
+ //       {
+ //           if (playerStealingScript.m_StolenItem.name == "Painting")
+ //           {
+ //               myAudio.clip = stealPaintingClip;
+ //           }
+ //           if (playerStealingScript.m_StolenItem.name == "DisplayCase")
+ //           {
+ //               myAudio.clip = stealCaseClip;
+ //           }
             
-            myAudio.Play();
-            playerStealingScript.stealingNow = false;
-        }
-    }
+ //           myAudio.Play();
+ //           playerStealingScript.m_StealingNow = false;
+ //       }
+ //   }
 }

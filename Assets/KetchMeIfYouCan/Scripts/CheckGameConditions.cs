@@ -18,13 +18,13 @@ public class CheckGameConditions : MonoBehaviour
 
     private void CheckLoot()
     {
-        if (m_playerInteract.m_StolenObjects.Count >= m_MinLootItems)
+        if (m_playerInteract.m_StolenObjects.Count >= GameManager.m_Instance.m_NumberOfItemsToSteal)
         {
             GameManager.RestartGame("YOU WIN!");
         }
         else
         {
-            GameManager.DisplayTextHUD("YOU NEED TO STEAL " + (m_MinLootItems - m_playerInteract.m_StolenObjects.Count).ToString() + " ITEMS!", 3.0f);
+            GameManager.DisplayTextHUD("YOU ARE MISSING " + (GameManager.m_Instance.m_NumberOfItemsToSteal - m_playerInteract.m_StolenObjects.Count).ToString() + " ITEMS.", 3.0f);
         }
     }
 }
