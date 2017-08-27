@@ -1,0 +1,60 @@
+<html>
+<canvas id="gameCanvas" width="800" height="800"></canvas>
+
+<script>
+var canvas;
+var canvasContext;
+
+var bgColor = 'green';
+
+window.onload = function() {
+    canvas = document.getElementById('gameCanvas');
+    canvasContext = canvas.getContext('2d');
+
+    canvasContext.fillStyle = bgColor;
+    canvasContext.fillRect(0,0,canvas.width,canvas.height);
+    /*for(var i=0;i<75;i++) {
+        triangleChain(200,170,1.002,
+                10+i*7,5+1*i,-20,3,
+                30,4,1.15);
+    }*/
+    // canvasContext.rotate(Math.PI/20.0);
+    triangleChain(74,50,1.062,
+                750,-8,570,-2,
+                55,-0.65,1.75);
+}
+
+function triangleChain(num,angDiv,scaleAmt,
+				baseX,deltaX, baseY,deltaY,
+				baseW,deltaW,margin) {
+	canvasContext.save();
+    canvasContext.strokeStyle = 'white';
+    canvasContext.lineWidth = margin;
+    var scalePile = 1.0;
+	for(var i=0;i<num;i++) {
+        canvasContext.save();
+        canvasContext.translate(cx,cy);
+    	canvasContext.rotate(i*Math.PI/angDiv);
+    	var cx=baseX+i*deltaX;
+    	var cy=baseY+i*deltaY;
+    	var sw=(baseW+i*deltaW) * scalePile;
+        scalePile *= scaleAmt;
+        
+        canvasContext.beginPath();
+        canvasContext.moveTo(-sw,sw);
+        canvasContext.lineTo(0,-sw);
+        canvasContext.lineTo(sw,sw);
+        canvasContext.lineTo(-sw,sw);
+        canvasContext.stroke();
+        canvasContext.restore();
+
+        /*
+	    canvasContext.fillStyle = bgColor;
+    	canvasContext.fillRect(cx+margin,cy+margin,sw-margin*2,sh-margin*2);*/
+	}
+	canvasContext.restore();
+}
+
+</script>
+
+</html>
