@@ -7,8 +7,8 @@ public class PlayerInteract : MonoBehaviour
 {
     public float m_MaxInteractDistance = 50.0f;
     public List<GameObject> m_StolenObjects;
-    //public bool m_StealingNow = false;
-    //public GameObject m_StolenItem;
+    public bool m_StealingNow = false;
+    public GameObject m_StolenItem;
 
     private void Awake()
     {
@@ -28,13 +28,20 @@ public class PlayerInteract : MonoBehaviour
             
             if (Physics.Raycast(transform.position, transform.forward, out hit, m_MaxInteractDistance))
             {
-                if (hit.transform.gameObject.CompareTag("Stealable") || hit.transform.gameObject.CompareTag("GoalItem"))
+                if (hit.transform.gameObject.CompareTag("Stealable") || hit.transform.gameObject.CompareTag("ObjectiveItem"))
                 {
+                    //Assign object being stolen
                     var pickedUpItem = hit.transform.gameObject;
-                    pickedUpItem.SetActive(false);
-                    Debug.Log("Stole " + hit.transform.gameObject.name);
 
-                    if (pickedUpItem.tag == "GoalItem")
+                    //Used by PaintingRemoveAudio script
+                    m_StolenItem = pickedUpItem;
+                    m_StealingNow = true;
+
+                    //Disable object being stolen
+                    pickedUpItem.SetActive(false);
+
+                    //Add item to Stolen Objects if on the Objective list
+                    if (pickedUpItem.tag == "ObjectiveItem")
                     {
                         m_StolenObjects.Add(pickedUpItem);
                     }

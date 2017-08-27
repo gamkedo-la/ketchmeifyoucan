@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         {
             var randomIndex = Random.Range(0, m_Instance.m_StealableItems.Count);
             m_Instance.m_ItemsToSteal[i] = m_Instance.m_StealableItems[randomIndex];
-            m_Instance.m_ItemsToSteal[i].tag = "GoalItem";
+            m_Instance.m_ItemsToSteal[i].tag = "ObjectiveItem";
             m_Instance.m_StealableItems.RemoveAt(randomIndex);
         }
 
