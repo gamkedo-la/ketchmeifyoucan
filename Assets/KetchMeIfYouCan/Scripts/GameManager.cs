@@ -28,10 +28,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        ChooseRandomObjects(3);
+		EnumerateStealables();
+		ChooseRandomObjects(3);
     }
 
-    public static void DisplayTextHUD(string message, float length)
+	public static void DisplayTextHUD(string message, float length)
     {
         m_Instance.StartCoroutine(DisplayTextHUDDelay(message, length));   
     }
@@ -59,7 +60,13 @@ public class GameManager : MonoBehaviour
 
     private static void ChooseRandomObjects(int numObjToSteal)
     {
-        m_Instance.m_ItemsToSteal = new GameObject[numObjToSteal];
+		if (m_Instance.m_StealableItems.Count<numObjToSteal)
+		{
+			Debug.LogWarning("WARNING: ChooseRandomObjects does not have enough m_StealableItems");
+			return;
+		}
+
+		m_Instance.m_ItemsToSteal = new GameObject[numObjToSteal];
 
         for (int i = 0; i < numObjToSteal; i++)
         {
@@ -71,4 +78,13 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Your objective is to steal: " + m_Instance.m_ItemsToSteal[0].name + ", " + m_Instance.m_ItemsToSteal[1].name + ", " + m_Instance.m_ItemsToSteal[2].name);
     }
+
+	private static void EnumerateStealables() // look for any obj with the right TAG
+	{
+		m_Instance.m_StealableItems = new List<GameObject>(GameObject.FindGameObjectsWithTag("Stealable"));
+		Debug.Log("EnumerateStealables found " + m_Instance.m_StealableItems.Count + " stealable objects.");
+	}
+
+
+
 }
