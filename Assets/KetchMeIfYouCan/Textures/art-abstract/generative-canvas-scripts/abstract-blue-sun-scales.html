@@ -1,0 +1,55 @@
+<html>
+<canvas id="gameCanvas" width="800" height="800"></canvas>
+
+<script>
+var canvas;
+var canvasContext;
+
+var bgColor = 'blue';
+
+window.onload = function() {
+    canvas = document.getElementById('gameCanvas');
+    canvasContext = canvas.getContext('2d');
+
+    canvasContext.fillStyle = bgColor;
+    canvasContext.fillRect(0,0,canvas.width,canvas.height);
+    
+    circleChain(200,100,1.015,
+    		-220,18,230,0,
+    		30,16,0.4);
+    for(var i=0;i<75;i++) {
+        circleChain(200,40,1.002,
+                370+i*7,5+1*i,-20,3,
+                30,10,1.15);
+    }
+}
+
+function circleChain(num,angDiv,scaleAmt,
+				baseX,deltaX, baseY,deltaY,
+				baseW,deltaW,margin) {
+	canvasContext.save();
+	for(var i=0;i<num;i++) {
+    	canvasContext.rotate(Math.PI/angDiv);
+    	canvasContext.scale(scaleAmt,scaleAmt);
+    	var cx=baseX+i*deltaX;
+    	var cy=baseY+i*deltaY;
+    	var sw=baseW+i*deltaW;
+        colorCircle(cx,cy,sw,'white');
+        colorCircle(cx,cy,sw-margin,bgColor);
+    	/*
+	    canvasContext.fillStyle = bgColor;
+    	canvasContext.fillRect(cx+margin,cy+margin,sw-margin*2,sh-margin*2);*/
+	}
+	canvasContext.restore();
+}
+
+function colorCircle(centerX, centerY, radius, fillColor) {
+  canvasContext.fillStyle = fillColor;
+  canvasContext.beginPath();
+  canvasContext.arc(centerX, centerY, radius, 0, Math.PI*2, true);
+  canvasContext.fill();
+}
+
+</script>
+
+</html>

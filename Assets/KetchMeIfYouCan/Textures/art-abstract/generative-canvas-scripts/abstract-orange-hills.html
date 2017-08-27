@@ -1,0 +1,52 @@
+<html>
+<canvas id="gameCanvas" width="800" height="800"></canvas>
+
+<script>
+var canvas;
+var canvasContext;
+
+var bgColor = 'orange';
+
+window.onload = function() {
+    canvas = document.getElementById('gameCanvas');
+    canvasContext = canvas.getContext('2d');
+
+    canvasContext.fillStyle = bgColor;
+    canvasContext.fillRect(0,0,canvas.width,canvas.height);
+    
+    boxChain(150,200,1.02,
+    		-30,3, -40,2,
+    		1500,0,100,0);
+    boxChain(110,150,1.015,
+    		300,0, -25,0,
+    		700,10,300,15);
+	for(var i=4;i<19;i++) {
+	    boxChain(110,70,1.0162,
+	    		250+i*70,-10, -25,-7,
+	    		700,-5,300,-5);
+	}
+}
+
+function boxChain(num,angDiv,scaleAmt,
+				baseX,deltaX, baseY,deltaY,
+				baseW,deltaW, baseH,deltaH) {
+	canvasContext.save();
+	for(var i=0;i<num;i++) {
+    	canvasContext.rotate(Math.PI/angDiv);
+    	canvasContext.scale(scaleAmt,scaleAmt);
+    	var cx=baseX+i*deltaX;
+    	var cy=baseY+i*deltaY;
+    	var sw=baseW+i*deltaW;
+    	var sh=baseH+i*deltaH;
+	    canvasContext.fillStyle = 'white';
+    	canvasContext.fillRect(cx,cy,sw,sh);
+    	var margin=1.15;
+	    canvasContext.fillStyle = bgColor;
+    	canvasContext.fillRect(cx+margin,cy+margin,sw-margin*2,sh-margin*2);
+	}
+	canvasContext.restore();
+}
+
+</script>
+
+</html>
