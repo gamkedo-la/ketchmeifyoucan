@@ -2537,8 +2537,8 @@ MonoBehaviour:
     m_Bits: 1
   visibleTargets: []
   meshResolution: 1
-  edgeResolveIterations: 0
-  edgeDstThreshold: 0
+  edgeResolveIterations: 5
+  edgeDstThreshold: 1
   viewMeshFilter: {fileID: 33594451036492062}
 --- !u!114 &114994298224812066
 MonoBehaviour:

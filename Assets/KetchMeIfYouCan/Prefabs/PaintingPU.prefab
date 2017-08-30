@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 33775433317023558}
   - component: {fileID: 114199581309160460}
   - component: {fileID: 64120568354028228}
+  - component: {fileID: 114298048870426160}
   m_Layer: 0
   m_Name: Painting
   m_TagString: Stealable
@@ -512,3 +513,16 @@ MonoBehaviour:
   - x: 3
     y: 2
   m_selectedTriangles: 000000000100000002000000010000000300000002000000
+--- !u!114 &114298048870426160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1801014539779964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052d8f979e5c97448b5cbc28f527b454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 0
+  tooltipDescription: This is an item.

@@ -10,14 +10,21 @@ public class PlayerInteract : MonoBehaviour
     public bool m_StealingNow = false;
     public GameObject m_StolenItem;
 
+    UnityStandardAssets.Characters.FirstPerson.FirstPersonController m_playerController;
+
     private void Awake()
     {
+        m_playerController = FindObjectOfType(typeof(UnityStandardAssets.Characters.FirstPerson.FirstPersonController)) as UnityStandardAssets.Characters.FirstPerson.FirstPersonController;
         m_StolenObjects = new List<GameObject>();
     }
 
     private void Update()
     {
         Steal();
+
+        if (Tooltip.Instance != null) {
+            Tooltip.Instance.CheckForTooltip(transform.position, transform.forward, m_MaxInteractDistance);
+        }
     }
 
     private void Steal()
