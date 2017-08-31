@@ -15,14 +15,15 @@ public class GuardAI : MonoBehaviour
     public GameObject[] m_PatrolDestinations;
     public int m_CurrentPatrolDestination = -1;
     public int m_NextPatrolDestination = 0;
-    public Text m_DialogueText;
     public AIState m_AIState = AIState.Wait;
 
     private NavMeshAgent m_nav;
+    private Dialogue m_dialogue;
 
     private void Awake()
     {
         m_nav = GetComponent<NavMeshAgent>();
+        m_dialogue = GetComponent<Dialogue>();
     }
 
     private void Start()
@@ -89,9 +90,9 @@ public class GuardAI : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, m_PatrolDestinations[m_CurrentPatrolDestination].transform.localRotation, m_GuardRotationSpeed * Time.deltaTime);
 
         ////Wait at location.
-        m_DialogueText.text = patrolDestinationData.m_GuardDialogue;
+        m_dialogue.RunDialogue(patrolDestinationData.m_GuardDialogue);
         yield return new WaitForSeconds(3.0f);
-        m_DialogueText.text = "";
+        m_dialogue.EndDialogue();
 
         m_AIState = AIState.Choosing;
     }

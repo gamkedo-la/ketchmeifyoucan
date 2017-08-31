@@ -20769,7 +20769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &998055893
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23061,7 +23061,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-20376
+  m_Name: pb_Mesh-1424
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -30326,6 +30326,23 @@ Transform:
   m_Father: {fileID: 1261913497}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1804185704 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1706966532395432, guid: 6bdbd99fcf411b648a921707395239c9,
+    type: 2}
+  m_PrefabInternal: {fileID: 748887163}
+--- !u!114 &1804185705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1804185704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a7dd696c8ac1a48bb3cb0f1f8f0c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueText: {fileID: 1631671127}
 --- !u!224 &1806558081 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224385488615046320, guid: 99ebc43652e342948a2cb5420f4b9845,
@@ -33829,7 +33846,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-20370
+  m_Name: pb_Mesh-1410
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
