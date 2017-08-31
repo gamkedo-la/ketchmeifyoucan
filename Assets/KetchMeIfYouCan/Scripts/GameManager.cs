@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        Application.targetFrameRate = 60;
     }
 
     private void Start()
@@ -53,7 +55,12 @@ public class GameManager : MonoBehaviour
     {
         m_Instance.m_HUDText.text = message;
         m_Instance.m_FPSController.enabled = false;
-        yield return new WaitForSeconds(3.0f);
+
+        //Screen fade effect.
+        FadeEffects.Instance.FadeScreen(1, 0.03f);
+
+        yield return new WaitForSeconds(3.0F);
+
         m_Instance.m_HUDText.text = "";
         SceneManager.LoadScene(0);
     }
