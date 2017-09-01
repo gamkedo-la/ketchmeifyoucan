@@ -83,6 +83,7 @@ public class GuardAI : MonoBehaviour
         m_AIState = AIState.Walk;
     }
 
+    //Dialogue is a bit buggy because the couroutine is called various times.
     private IEnumerator WaitBeforeContinuingPatrol()
     {
         var patrolDestinationData = m_PatrolDestinations[m_CurrentPatrolDestination].GetComponent<PatrolDestinationData>();

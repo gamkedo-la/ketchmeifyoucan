@@ -15,7 +15,7 @@ public class CheckForPlayer : MonoBehaviour
         RaycastHit rayHit;
         if (Physics.Linecast(m_Body.transform.position, m_Player.transform.position, out rayHit))
         {
-            if (rayHit.collider.gameObject.CompareTag("Player"))
+            if (rayHit.collider.gameObject.CompareTag("PlayerBody"))
             {
                 //Debug.Log("Caught");
                 GameManager.RestartGame("YOU'VE BEEN CAUGHT");

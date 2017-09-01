@@ -12,6 +12,7 @@ TagManager:
   - SecurityCamera
   - Stolen
   - ObjectiveItem
+  - PlayerBody
   layers:
   - Default
   - TransparentFX

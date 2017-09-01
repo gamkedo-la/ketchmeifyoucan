@@ -6,5 +6,5 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/GamkedoPrototype/Scenes/Prototype.unity
+    path: Assets/KetchMeIfYouCan/Scenes/Prototype.unity
     guid: 5229ca278ac0e53499b6c73118963d2b
