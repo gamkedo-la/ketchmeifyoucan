@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
 		EnumerateStealables();
-		ChooseRandomObjects(3);
+		ChooseRandomObjects(m_NumberOfItemsToSteal);
     }
 
 	public static void DisplayTextHUD(string message, float length)
