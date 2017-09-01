@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         m_Instance.m_FPSController.enabled = false;
 
         //Screen fade effect.
-        FadeEffects.Instance.FadeScreen(1, 0.03f);
+        FadeEffects.Instance.FadeScreen(1, 0.01f);
 
         yield return new WaitForSeconds(3.0F);
 
