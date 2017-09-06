@@ -6,7 +6,8 @@ public class ScreenshotManager : MonoBehaviour {
 
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.P)) {
-            ScreenCapture.CaptureScreenshot("screenshot.png");
+            ScreenCapture.CaptureScreenshot("screenshot1.png");
+            Debug.Log("shotted");
         }
 	}
 }
