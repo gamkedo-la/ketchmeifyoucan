@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public FirstPersonController m_FPSController;
     public Text m_HUDText;
     public List<GameObject> m_StealableItems = new List<GameObject>();
+    public List<GameObject> m_StealableDisplayItems = new List<GameObject>();
     public GameObject[] m_ItemsToSteal;
     public int m_NumberOfItemsToSteal = 3;
 
@@ -31,7 +32,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
 		EnumerateStealables();
-		ChooseRandomObjects(m_NumberOfItemsToSteal);
+        SpawnDisplayItems();
+		//ChooseGoalItems(m_NumberOfItemsToSteal);
     }
 
 	public static void DisplayTextHUD(string message, float length)
@@ -65,17 +67,17 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    private static void ChooseRandomObjects(int numObjToSteal)
+    private static void ChooseGoalItems(int numItemsToSteal)
     {
-		if (m_Instance.m_StealableItems.Count<numObjToSteal)
+		if (m_Instance.m_StealableItems.Count < numItemsToSteal)
 		{
 			Debug.LogWarning("WARNING: ChooseRandomObjects does not have enough m_StealableItems");
 			return;
 		}
 
-		m_Instance.m_ItemsToSteal = new GameObject[numObjToSteal];
+		m_Instance.m_ItemsToSteal = new GameObject[numItemsToSteal];
 
-        for (int i = 0; i < numObjToSteal; i++)
+        for (int i = 0; i < numItemsToSteal; i++)
         {
             var randomIndex = Random.Range(0, m_Instance.m_StealableItems.Count);
             m_Instance.m_ItemsToSteal[i] = m_Instance.m_StealableItems[randomIndex];
@@ -91,6 +93,17 @@ public class GameManager : MonoBehaviour
 		m_Instance.m_StealableItems = new List<GameObject>(GameObject.FindGameObjectsWithTag("Stealable"));
 		Debug.Log("EnumerateStealables found " + m_Instance.m_StealableItems.Count + " stealable objects.");
 	}
+
+    private static void SpawnDisplayItems()
+    {
+        List<GameObject> spawnableDisplayCaseAreas = new List<GameObject>(GameObject.FindGameObjectsWithTag("DisplaySpawn"));
+        for (int i = 0; i < spawnableDisplayCaseAreas.Count; i++)
+        {
+            var randomStealItemIndex = Random.Range(0, m_Instance.m_StealableDisplayItems.Count);
+            Instantiate(m_Instance.m_StealableDisplayItems[randomStealItemIndex], spawnableDisplayCaseAreas[i].transform.position, spawnableDisplayCaseAreas[i].transform.rotation, spawnableDisplayCaseAreas[i].transform.parent);
+            m_Instance.m_StealableDisplayItems.RemoveAt(randomStealItemIndex);
+        }
+    }
 
 
 

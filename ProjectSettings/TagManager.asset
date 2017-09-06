@@ -13,6 +13,7 @@ TagManager:
   - Stolen
   - ObjectiveItem
   - PlayerBody
+  - DisplaySpawn
   layers:
   - Default
   - TransparentFX

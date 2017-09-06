@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3d4c9f0aeef13024caf229e70d6e63d5
-timeCreated: 1504376263
+guid: 218687d7b848b65488c446b8fdd0bf09
+timeCreated: 1504672106
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Pedestal
+    4300000: Column
   materials:
     importMaterials: 1
     materialName: 0
