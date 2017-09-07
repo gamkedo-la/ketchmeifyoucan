@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(3.0F);
 
         m_Instance.m_HUDText.text = "";
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private static void ChooseGoalItems(int numItemsToSteal)
@@ -104,7 +104,4 @@ public class GameManager : MonoBehaviour
             m_Instance.m_StealableDisplayItems.RemoveAt(randomStealItemIndex);
         }
     }
-
-
-
 }

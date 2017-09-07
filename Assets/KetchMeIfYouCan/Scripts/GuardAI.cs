@@ -91,9 +91,15 @@ public class GuardAI : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, m_PatrolDestinations[m_CurrentPatrolDestination].transform.localRotation, m_GuardRotationSpeed * Time.deltaTime);
 
         ////Wait at location.
-        m_dialogue.RunDialogue(patrolDestinationData.m_GuardDialogue);
+        if (m_dialogue != null) {
+            m_dialogue.RunDialogue(patrolDestinationData.m_GuardDialogue);
+        }
+
         yield return new WaitForSeconds(3.0f);
-        m_dialogue.EndDialogue();
+
+        if (m_dialogue != null) {
+            m_dialogue.EndDialogue();
+        }
 
         m_AIState = AIState.Choosing;
     }

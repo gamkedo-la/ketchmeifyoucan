@@ -6,9 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class CheckForPlayer : MonoBehaviour
 {
+    GameObject m_Player;
+
     public Text m_HUDText;
-    public GameObject m_Player;
     public GameObject m_Body; //Object from where the Linecast should originate
+
+    private void Awake() {
+        m_Player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     public void CheckSight()
     {
