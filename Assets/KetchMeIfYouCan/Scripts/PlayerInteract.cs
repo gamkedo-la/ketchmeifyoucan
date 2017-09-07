@@ -35,7 +35,7 @@ public class PlayerInteract : MonoBehaviour
             
             if (Physics.Raycast(transform.position, transform.forward, out hit, m_MaxInteractDistance))
             {
-                if (hit.transform.gameObject.CompareTag("Stealable") || hit.transform.gameObject.CompareTag("ObjectiveItem"))
+                if (hit.transform.gameObject.CompareTag("StealablePainting") || hit.transform.gameObject.CompareTag("StealableDisplayItem") || hit.transform.gameObject.CompareTag("ObjectiveItem"))
                 {
                     //Assign object being stolen
                     var pickedUpItem = hit.transform.gameObject;

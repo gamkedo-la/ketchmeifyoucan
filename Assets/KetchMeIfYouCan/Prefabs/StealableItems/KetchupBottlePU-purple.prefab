@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114444578775543414}
   m_Layer: 0
   m_Name: KetchupBottlePU-purple
-  m_TagString: Stealable
+  m_TagString: StealableDisplayItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

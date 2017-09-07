@@ -10,10 +10,17 @@ public class GameManager : MonoBehaviour
     public static GameManager m_Instance;
     public FirstPersonController m_FPSController;
     public Text m_HUDText;
+
+    //Replacing this
     public List<GameObject> m_StealableItems = new List<GameObject>();
+    //With these
+    public List<GameObject> m_StealablePaintings = new List<GameObject>();
     public List<GameObject> m_StealableDisplayItems = new List<GameObject>();
-    public GameObject[] m_ItemsToSteal;
-    public int m_NumberOfItemsToSteal = 3;
+    public List<GameObject> m_DisplayCases = new List<GameObject>();
+    public List<GameObject> m_PaintingFrames = new List<GameObject>();
+
+    public GameObject[] m_GoalItems;
+    public int m_NumGoalItems = 3;
 
     private void Awake()
     {
@@ -31,8 +38,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-		EnumerateStealables();
-        SpawnDisplayItems();
+        SetupGame();
 		//ChooseGoalItems(m_NumberOfItemsToSteal);
     }
 
@@ -67,41 +73,65 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private static void ChooseGoalItems(int numItemsToSteal)
+    
+    private void SetupGame()
     {
-		if (m_Instance.m_StealableItems.Count < numItemsToSteal)
-		{
-			Debug.LogWarning("WARNING: ChooseRandomObjects does not have enough m_StealableItems");
-			return;
-		}
+        //Find all paintings in level
+        m_Instance.m_StealablePaintings = new List<GameObject>(GameObject.FindGameObjectsWithTag("StealablePainting"));
+        Debug.Log("GameManager found " + m_Instance.m_StealablePaintings.Count + " paintings.");
 
-		m_Instance.m_ItemsToSteal = new GameObject[numItemsToSteal];
+        //Find all painting frames
+        m_Instance.m_PaintingFrames = new List<GameObject>(GameObject.FindGameObjectsWithTag("PaintingSpawn"));
+        Debug.Log("GameManager found " + m_Instance.m_PaintingFrames.Count + " painting frames.");
+
+        //Find all display case items in level
+        m_Instance.m_StealableDisplayItems = new List<GameObject>(GameObject.FindGameObjectsWithTag("StealableDisplayItem"));
+        Debug.Log("GameManager found " + m_Instance.m_StealableDisplayItems.Count + " display case items.");
+
+        //Find all display cases
+        m_Instance.m_DisplayCases = new List<GameObject>(GameObject.FindGameObjectsWithTag("DisplaySpawn"));
+        Debug.Log("GameManager found " + m_Instance.m_DisplayCases.Count + " display cases.");
+
+
+        //Spawn paintings
+        for (int i = 0; i < m_Instance.m_PaintingFrames.Count; i++)
+        {
+            var randomIndex = Random.Range(0, m_Instance.m_StealablePaintings.Count);
+            m_Instance.m_StealablePaintings[randomIndex].transform.position = m_Instance.m_PaintingFrames[i].transform.position;
+            m_Instance.m_StealablePaintings[randomIndex].transform.rotation = m_Instance.m_PaintingFrames[i].transform.rotation;
+            m_Instance.m_StealablePaintings.RemoveAt(randomIndex);
+        }
+
+        //Spawn display case items
+        for (int i = 0; i < m_Instance.m_DisplayCases.Count; i++)
+        {
+            var randomIndex = Random.Range(0, m_Instance.m_StealableDisplayItems.Count);
+            m_Instance.m_StealableDisplayItems[randomIndex].transform.position = m_Instance.m_DisplayCases[i].transform.position;
+            m_Instance.m_StealableDisplayItems[randomIndex].transform.rotation = m_Instance.m_DisplayCases[i].transform.rotation;
+            m_Instance.m_StealableDisplayItems.RemoveAt(randomIndex);
+        }
+    }
+
+
+
+    private void ChooseGoalItems(int numItemsToSteal)
+    {
+        if (m_Instance.m_StealableItems.Count < numItemsToSteal)
+        {
+            Debug.LogWarning("WARNING: ChooseRandomObjects does not have enough m_StealableItems");
+            return;
+        }
+
+        m_Instance.m_GoalItems = new GameObject[numItemsToSteal];
 
         for (int i = 0; i < numItemsToSteal; i++)
         {
             var randomIndex = Random.Range(0, m_Instance.m_StealableItems.Count);
-            m_Instance.m_ItemsToSteal[i] = m_Instance.m_StealableItems[randomIndex];
-            m_Instance.m_ItemsToSteal[i].tag = "ObjectiveItem";
+            m_Instance.m_GoalItems[i] = m_Instance.m_StealableItems[randomIndex];
+            m_Instance.m_GoalItems[i].tag = "ObjectiveItem";
             m_Instance.m_StealableItems.RemoveAt(randomIndex);
         }
 
-        Debug.Log("Your objective is to steal: " + m_Instance.m_ItemsToSteal[0].name + ", " + m_Instance.m_ItemsToSteal[1].name + ", " + m_Instance.m_ItemsToSteal[2].name);
-    }
-
-	private static void EnumerateStealables() // look for any obj with the right TAG
-	{
-		m_Instance.m_StealableItems = new List<GameObject>(GameObject.FindGameObjectsWithTag("Stealable"));
-		Debug.Log("EnumerateStealables found " + m_Instance.m_StealableItems.Count + " stealable objects.");
-	}
-
-    private static void SpawnDisplayItems()
-    {
-        List<GameObject> spawnableDisplayCaseAreas = new List<GameObject>(GameObject.FindGameObjectsWithTag("DisplaySpawn"));
-        for (int i = 0; i < spawnableDisplayCaseAreas.Count; i++)
-        {
-            var randomStealItemIndex = Random.Range(0, m_Instance.m_StealableDisplayItems.Count);
-            Instantiate(m_Instance.m_StealableDisplayItems[randomStealItemIndex], spawnableDisplayCaseAreas[i].transform.position, spawnableDisplayCaseAreas[i].transform.rotation, spawnableDisplayCaseAreas[i].transform.parent);
-            m_Instance.m_StealableDisplayItems.RemoveAt(randomStealItemIndex);
-        }
+        Debug.Log("Your objective is to steal: " + m_Instance.m_GoalItems[0].name + ", " + m_Instance.m_GoalItems[1].name + ", " + m_Instance.m_GoalItems[2].name);
     }
 }
