@@ -2211,6 +2211,22 @@ Transform:
   m_PrefabParentObject: {fileID: 4502161832502160, guid: 9c46e011d3faae649999668596a06793,
     type: 2}
   m_PrefabInternal: {fileID: 601558922}
+--- !u!1 &656833551 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1341866645613756, guid: c0beeb77a42f2f94cbb9e99fe05800f4,
+    type: 2}
+  m_PrefabInternal: {fileID: 816690207}
+--- !u!114 &656833554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 656833551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d2acc98e77be3746b3a504e12dc95f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &687874286
 Mesh:
   m_ObjectHideFlags: 0
@@ -2344,7 +2360,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-3917322
+  m_Name: pb_Mesh-3670
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -5983,6 +5999,22 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
+--- !u!1 &1580972618 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1341866645613756, guid: c0beeb77a42f2f94cbb9e99fe05800f4,
+    type: 2}
+  m_PrefabInternal: {fileID: 70164706}
+--- !u!114 &1580972621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1580972618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d2acc98e77be3746b3a504e12dc95f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1589418113
 Prefab:
   m_ObjectHideFlags: 0
@@ -6056,7 +6088,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-3898962
+  m_Name: pb_Mesh-3960
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2

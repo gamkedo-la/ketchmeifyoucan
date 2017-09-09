@@ -23,7 +23,7 @@ public class PlayerInteract : MonoBehaviour
         Steal();
 
         if (Tooltip.Instance != null) {
-            Tooltip.Instance.CheckForTooltip(transform.position, transform.forward, m_MaxInteractDistance);
+            Tooltip.Instance.CheckForTooltip(transform.position + transform.forward, transform.forward, m_MaxInteractDistance);
         }
     }
 

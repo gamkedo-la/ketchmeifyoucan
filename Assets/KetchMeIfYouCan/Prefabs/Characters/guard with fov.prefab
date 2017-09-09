@@ -1481,11 +1481,7 @@ MonoBehaviour:
   m_Player: {fileID: 0}
   m_GuardSpeed: 3
   m_GuardRotationSpeed: 3
-  m_PatrolDestinations:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_PatrolDestinations: []
   m_CurrentPatrolDestination: 0
   m_NextPatrolDestination: 0
   m_AIState: 0

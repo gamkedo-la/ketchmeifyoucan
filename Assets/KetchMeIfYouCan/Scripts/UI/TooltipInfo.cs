@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemType { Stealable, Interactable }
+public enum ItemType { Stealable, Interactable, Info }
 public class TooltipInfo : MonoBehaviour {
     public ItemType itemType;
     [TextArea(3,10)]
@@ -25,6 +25,10 @@ public class TooltipInfo : MonoBehaviour {
             transform.name + "\n" +         //name
             "\n" +
             tooltipDescription ;            //description
+            break;
+
+            case ItemType.Info:
+            typeInfo = tooltipDescription;
             break;
         }
 
