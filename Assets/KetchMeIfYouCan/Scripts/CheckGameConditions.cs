@@ -18,13 +18,13 @@ public class CheckGameConditions : MonoBehaviour
 
     private void CheckLoot()
     {
-        if (m_playerInteract.m_StolenObjects.Count >= GameManager.m_Instance.m_NumGoalItems)
+        if (m_playerInteract.m_StolenObjectiveItems.Count >= GameManager.m_Instance.m_NumOfObjectiveItems)
         {
             GameManager.RestartGame("YOU WIN!");
         }
         else
         {
-            GameManager.DisplayTextHUD("YOU ARE MISSING " + (GameManager.m_Instance.m_NumGoalItems - m_playerInteract.m_StolenObjects.Count).ToString() + " ITEMS.", 3.0f);
+            GameManager.DisplayTextHUD("YOU ARE MISSING " + (GameManager.m_Instance.m_NumOfObjectiveItems - m_playerInteract.m_StolenObjectiveItems.Count).ToString() + " ITEMS.", 3.0f);
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     public float m_MaxInteractDistance = 50.0f;
-    public List<GameObject> m_StolenObjects;
+    public List<GameObject> m_StolenObjectiveItems;
     public bool m_StealingNow = false;
     public GameObject m_StolenItem;
 
@@ -15,7 +15,7 @@ public class PlayerInteract : MonoBehaviour
     private void Awake()
     {
         m_playerController = FindObjectOfType(typeof(UnityStandardAssets.Characters.FirstPerson.FirstPersonController)) as UnityStandardAssets.Characters.FirstPerson.FirstPersonController;
-        m_StolenObjects = new List<GameObject>();
+        m_StolenObjectiveItems = new List<GameObject>();
     }
 
     private void Update()
@@ -23,7 +23,7 @@ public class PlayerInteract : MonoBehaviour
         Steal();
 
         if (Tooltip.Instance != null) {
-            Tooltip.Instance.CheckForTooltip(transform.position, transform.forward, m_MaxInteractDistance);
+            Tooltip.Instance.CheckForTooltip(transform.position + transform.forward, transform.forward, m_MaxInteractDistance);
         }
     }
 
@@ -35,23 +35,15 @@ public class PlayerInteract : MonoBehaviour
             
             if (Physics.Raycast(transform.position, transform.forward, out hit, m_MaxInteractDistance))
             {
-                if (hit.transform.gameObject.CompareTag("StealablePainting") || hit.transform.gameObject.CompareTag("StealableDisplayItem") || hit.transform.gameObject.CompareTag("ObjectiveItem"))
+                if (hit.transform.gameObject.CompareTag("ObjectiveItem"))
                 {
                     //Assign object being stolen
                     var pickedUpItem = hit.transform.gameObject;
 
-                    //Used by PaintingRemoveAudio script
-                    m_StolenItem = pickedUpItem;
-                    m_StealingNow = true;
+                    m_StolenObjectiveItems.Add(pickedUpItem);
 
                     //Disable object being stolen
                     pickedUpItem.SetActive(false);
-
-                    //Add item to Stolen Objects if on the Objective list
-                    if (pickedUpItem.tag == "ObjectiveItem")
-                    {
-                        m_StolenObjects.Add(pickedUpItem);
-                    }
                 }
             }
         }

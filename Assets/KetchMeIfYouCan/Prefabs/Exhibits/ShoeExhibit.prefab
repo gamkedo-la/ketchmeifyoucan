@@ -9,106 +9,104 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1071958283279914}
+  m_RootGameObject: {fileID: 1840674940755344}
   m_IsPrefabParent: 1
---- !u!1 &1071958283279914
+--- !u!1 &1041181075286220
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4534118507648902}
-  - component: {fileID: 65682511983004030}
-  - component: {fileID: 114890684480858278}
+  - component: {fileID: 4836083451454622}
+  - component: {fileID: 33604604351278902}
+  - component: {fileID: 23230337903368590}
   m_Layer: 0
-  m_Name: KetchupBottlePU
-  m_TagString: StealableDisplayItem
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1827945471577466
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4724965587570510}
-  - component: {fileID: 33763209367835844}
-  - component: {fileID: 23959693497273236}
-  m_Layer: 0
-  m_Name: Top
+  m_Name: KetchupPacket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1922211766898278
+--- !u!1 &1159025358867918
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4035954487010764}
-  - component: {fileID: 33767908747033964}
-  - component: {fileID: 23639092799873314}
+  - component: {fileID: 4027015372157570}
+  - component: {fileID: 33750649438572752}
+  - component: {fileID: 23307554747877496}
   m_Layer: 0
-  m_Name: Bottle
+  m_Name: Shoe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4035954487010764
+--- !u!1 &1840674940755344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4670361822205070}
+  m_Layer: 0
+  m_Name: ShoeExhibit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4027015372157570
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1922211766898278}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 2.0157847, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_GameObject: {fileID: 1159025358867918}
+  m_LocalRotation: {x: -0.6006327, y: 0.6006327, z: 0.3731493, w: 0.3731493}
+  m_LocalPosition: {x: 0.35000038, y: 1.36, z: -0.96}
+  m_LocalScale: {x: 200.00014, y: 200.00012, z: 200.00017}
   m_Children: []
-  m_Father: {fileID: 4534118507648902}
+  m_Father: {fileID: 4670361822205070}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4534118507648902
+  m_LocalEulerAnglesHint: {x: -116.298, y: 0, z: 89.99999}
+--- !u!4 &4670361822205070
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1071958283279914}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_GameObject: {fileID: 1840674940755344}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4035954487010764}
-  - {fileID: 4724965587570510}
+  - {fileID: 4027015372157570}
+  - {fileID: 4836083451454622}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4724965587570510
+--- !u!4 &4836083451454622
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1827945471577466}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.00000011874363, y: 4.69, z: -0.0000002849847}
-  m_LocalScale: {x: 55.460857, y: 55.460857, z: 27.783966}
+  m_GameObject: {fileID: 1041181075286220}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 0.26200104, y: -0.39999998, z: 2.0690002}
+  m_LocalScale: {x: 100, y: 199.99994, z: 5}
   m_Children: []
-  m_Father: {fileID: 4534118507648902}
+  m_Father: {fileID: 4670361822205070}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23639092799873314
+--- !u!23 &23230337903368590
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1922211766898278}
+  m_GameObject: {fileID: 1041181075286220}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -116,7 +114,8 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 3fc5bdc84e8e6a84da7b9f94aec930f3, type: 2}
+  - {fileID: 2100000, guid: 2e08251c3e1cb9c4485a8e0aa0a95877, type: 2}
+  - {fileID: 2100000, guid: c719aeca522e4374b8166272354d6812, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -135,12 +134,12 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!23 &23959693497273236
+--- !u!23 &23307554747877496
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1827945471577466}
+  m_GameObject: {fileID: 1159025358867918}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -148,7 +147,8 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 2dedc2c9941b05341bfdff12aaf22029, type: 2}
+  - {fileID: 2100000, guid: 082e489c2c67a77438c010467b49f90f, type: 2}
+  - {fileID: 2100000, guid: 702c232e38fc45b4086228352aca9248, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -167,42 +167,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33763209367835844
+--- !u!33 &33604604351278902
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1827945471577466}
-  m_Mesh: {fileID: 4300000, guid: acc1b707ccdfd1f4f922b7953e580756, type: 3}
---- !u!33 &33767908747033964
+  m_GameObject: {fileID: 1041181075286220}
+  m_Mesh: {fileID: 4300000, guid: 6f8579b51ccd3314ca627f6a8bc9508f, type: 3}
+--- !u!33 &33750649438572752
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1922211766898278}
-  m_Mesh: {fileID: 4300002, guid: acc1b707ccdfd1f4f922b7953e580756, type: 3}
---- !u!65 &65682511983004030
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1071958283279914}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.07, y: 5.3, z: 1}
-  m_Center: {x: 0, y: 3.22, z: 0}
---- !u!114 &114890684480858278
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1071958283279914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 052d8f979e5c97448b5cbc28f527b454, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemType: 0
-  tooltipDescription: This is the red ketchup bottle
+  m_GameObject: {fileID: 1159025358867918}
+  m_Mesh: {fileID: 4300000, guid: 62eb34f23ffe8aa4dac297819ef2e685, type: 3}

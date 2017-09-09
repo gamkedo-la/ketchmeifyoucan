@@ -14,7 +14,7 @@ public class PaintingRemoveAudio : MonoBehaviour {
 
         if (playerStealingScript.m_StealingNow)
         {
-            if (playerStealingScript.m_StolenItem.tag == "Stealable" || playerStealingScript.m_StolenItem.tag == "ObjectiveItem")
+            if (playerStealingScript.m_StolenItem.tag == "StealablePainting" || playerStealingScript.m_StolenItem.tag == "StealableDisplayItem" || playerStealingScript.m_StolenItem.tag == "ObjectiveItem")
             {
                 myAudio.clip = stealPaintingClip;
             }
