@@ -6,6 +6,10 @@ using System.Linq;
 
 public class Tooltip : MonoBehaviour {
     public static Tooltip Instance { get; set; }
+
+    //Returns the transform that's current being looked at.
+    static Transform currentTooltipTransform;
+
     Text textInfo;
     Image infoBackground;
     Vector2 originalBackgroundSize;
@@ -22,6 +26,8 @@ public class Tooltip : MonoBehaviour {
     //Checks if an item has a tooltip.
     public void CheckForTooltip(Vector3 origin, Vector3 direction, float maxDistance) {
 
+        currentTooltipTransform = null;
+
         //Gets rid of UI.
         textInfo.gameObject.SetActive(false);
         infoBackground.gameObject.SetActive(false);
@@ -32,10 +38,13 @@ public class Tooltip : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(origin, direction, out hit, maxDistance)) {
 
-            if ( (hit.transform.gameObject.CompareTag("Stealable") || hit.transform.gameObject.CompareTag("ObjectiveItem")) ) {
+            if ((hit.transform.gameObject.CompareTag("Stealable") || hit.transform.gameObject.CompareTag("ObjectiveItem")
+                || hit.transform.gameObject.CompareTag("Interactable"))) {
 
                 if (hit.transform.GetComponent<TooltipInfo>()) {
                     ShowInfo(hit.transform);
+
+                    currentTooltipTransform = hit.transform;
 
                     textInfo.gameObject.SetActive(true);
                     infoBackground.gameObject.SetActive(true);
@@ -54,5 +63,11 @@ public class Tooltip : MonoBehaviour {
         //Adjust UI for amount of text.
         infoBackground.rectTransform.sizeDelta = new Vector2(originalBackgroundSize.x,
             originalBackgroundSize.y + offsetPerSpace * textInfo.text.Count(f => f == '\n') + ((originalBackgroundSize.y - offsetPerSpace) / 2));
+    }
+
+    public static Transform CurrentTooltipTransform {
+        get {
+            return currentTooltipTransform;
+        }
     }
 }
