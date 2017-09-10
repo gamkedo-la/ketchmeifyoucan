@@ -2606,7 +2606,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1368991875849280, guid: c951624b427cbfe4ba845740a04b9f6c, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c951624b427cbfe4ba845740a04b9f6c, type: 2}
@@ -13088,6 +13088,7 @@ MonoBehaviour:
   m_CurrentPatrolDestination: 0
   m_NextPatrolDestination: 1
   m_AIState: 0
+  m_DestinationQueue: {x: 0, y: 0, z: 0}
 --- !u!4 &1804185708
 Transform:
   m_ObjectHideFlags: 0

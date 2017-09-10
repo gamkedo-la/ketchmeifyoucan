@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         SetupGame();
-		//ChooseGoalItems(m_NumberOfItemsToSteal);
     }
 
 	public static void DisplayTextHUD(string message, float length)

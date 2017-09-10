@@ -10,11 +10,11 @@ public class PlayerInteract : MonoBehaviour
     public bool m_StealingNow = false;
     public GameObject m_StolenItem;
 
-    UnityStandardAssets.Characters.FirstPerson.FirstPersonController m_playerController;
+    //UnityStandardAssets.Characters.FirstPerson.FirstPersonController m_playerController;
 
     private void Awake()
     {
-        m_playerController = FindObjectOfType(typeof(UnityStandardAssets.Characters.FirstPerson.FirstPersonController)) as UnityStandardAssets.Characters.FirstPerson.FirstPersonController;
+        //m_playerController = FindObjectOfType(typeof(UnityStandardAssets.Characters.FirstPerson.FirstPersonController)) as UnityStandardAssets.Characters.FirstPerson.FirstPersonController;
         m_StolenObjectiveItems = new List<GameObject>();
     }
 
@@ -44,6 +44,11 @@ public class PlayerInteract : MonoBehaviour
 
                     //Disable object being stolen
                     pickedUpItem.SetActive(false);
+                }
+                else if (hit.transform.gameObject.CompareTag("StealablePainting") || hit.transform.gameObject.CompareTag("StealableDisplayItem"))
+                {
+                    GameManager.DisplayTextHUD("This isn't an objective item.", 2.0f);
+                    Debug.Log("This isn't an objective item.");
                 }
             }
         }
