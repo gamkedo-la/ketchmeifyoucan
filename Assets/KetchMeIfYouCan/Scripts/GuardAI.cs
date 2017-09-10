@@ -9,7 +9,6 @@ public enum AIState { Wait, Choosing, Walk }
 
 public class GuardAI : MonoBehaviour
 {
-    public GameObject m_Player;
     public float m_GuardSpeed = 3.0f;
     public float m_GuardRotationSpeed = 3.0f;
     public GameObject[] m_PatrolDestinations;
@@ -21,11 +20,13 @@ public class GuardAI : MonoBehaviour
     //Check FindNextDestintion() for details.
     public Vector3 m_DestinationQueue;
 
+    private GameObject m_Player;
     private NavMeshAgent m_nav;
     private Dialogue m_dialogue;
 
     private void Awake()
     {
+        m_Player = GameObject.FindGameObjectWithTag("Player");
         m_nav = GetComponent<NavMeshAgent>();
         m_dialogue = GetComponent<Dialogue>();
     }

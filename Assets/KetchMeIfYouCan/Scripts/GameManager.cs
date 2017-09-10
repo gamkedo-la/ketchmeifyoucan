@@ -8,7 +8,6 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class GameManager : MonoBehaviour
 {
     public static GameManager m_Instance;
-    public FirstPersonController m_FPSController;
     public Text m_HUDText;
 
     public List<GameObject> m_StealablePaintings = new List<GameObject>();
@@ -18,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] m_ObjectiveItems;
     public int m_NumOfObjectiveItems = 3;
+
+    private FirstPersonController m_FPSController;
 
     private void Awake()
     {
@@ -31,6 +32,8 @@ public class GameManager : MonoBehaviour
         }
 
         Application.targetFrameRate = 60;
+
+        m_FPSController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
     }
 
     private void Start()
