@@ -38,7 +38,7 @@ public class Tooltip : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(origin, direction, out hit, maxDistance)) {
 
-            if ((hit.transform.gameObject.CompareTag("Stealable") || hit.transform.gameObject.CompareTag("ObjectiveItem")
+            if ((hit.transform.gameObject.CompareTag("StealablePainting") || hit.transform.gameObject.CompareTag("StealablePainting") || hit.transform.gameObject.CompareTag("ObjectiveItem")
                 || hit.transform.gameObject.CompareTag("Interactable"))) {
 
                 if (hit.transform.GetComponent<TooltipInfo>()) {

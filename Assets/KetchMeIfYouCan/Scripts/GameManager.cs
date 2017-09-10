@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
 
 	public static void DisplayTextHUD(string message, float length)
     {
+        m_Instance.StopCoroutine("DisplayTextHUDDelay");
+        m_Instance.m_HUDText.text = "";       
         m_Instance.StartCoroutine(DisplayTextHUDDelay(message, length));   
     }
 
@@ -74,34 +76,44 @@ public class GameManager : MonoBehaviour
     {
         //Find all paintings in level
         m_Instance.m_StealablePaintings = new List<GameObject>(GameObject.FindGameObjectsWithTag("StealablePainting"));
-        Debug.Log("GameManager found " + m_Instance.m_StealablePaintings.Count + " paintings.");
+        //Debug.Log("GameManager found " + m_Instance.m_StealablePaintings.Count + " paintings.");
 
-        //Find all painting frames
+        //Find all painting frames in level
         m_Instance.m_PaintingFrames = new List<GameObject>(GameObject.FindGameObjectsWithTag("PaintingSpawn"));
         //Debug.Log("GameManager found " + m_Instance.m_PaintingFrames.Count + " painting frames.");
+        RandomizeGOList(m_Instance.m_PaintingFrames);
 
         //Find all display case items in level
         m_Instance.m_StealableDisplayItems = new List<GameObject>(GameObject.FindGameObjectsWithTag("StealableDisplayItem"));
-        Debug.Log("GameManager found " + m_Instance.m_StealableDisplayItems.Count + " display case items.");
+        //Debug.Log("GameManager found " + m_Instance.m_StealableDisplayItems.Count + " display case items.");
 
-        //Find all display cases
+        //Find all display cases in level
         m_Instance.m_DisplayCases = new List<GameObject>(GameObject.FindGameObjectsWithTag("DisplaySpawn"));
         //Debug.Log("GameManager found " + m_Instance.m_DisplayCases.Count + " display cases.");
+        RandomizeGOList(m_Instance.m_DisplayCases);
 
         ChooseObjectiveItems(m_NumOfObjectiveItems);
 
-        //Spawn paintings
+        //Spawn paintings in frames
         for (int i = 0; i < m_Instance.m_PaintingFrames.Count; i++)
         {
+            if (m_Instance.m_StealablePaintings.Count <= 0)
+            {
+                continue;
+            }
             var randomIndex = Random.Range(0, m_Instance.m_StealablePaintings.Count);
             m_Instance.m_StealablePaintings[randomIndex].transform.position = m_Instance.m_PaintingFrames[i].transform.position;
             m_Instance.m_StealablePaintings[randomIndex].transform.rotation = m_Instance.m_PaintingFrames[i].transform.rotation;
             m_Instance.m_StealablePaintings.RemoveAt(randomIndex);
         }
 
-        //Spawn display case items
+        //Spawn display items in cases
         for (int i = 0; i < m_Instance.m_DisplayCases.Count; i++)
         {
+            if (m_Instance.m_StealableDisplayItems.Count <= 0)
+            {
+                continue;
+            }
             var randomIndex = Random.Range(0, m_Instance.m_StealableDisplayItems.Count);
             m_Instance.m_StealableDisplayItems[randomIndex].transform.position = m_Instance.m_DisplayCases[i].transform.position;
             m_Instance.m_StealableDisplayItems[randomIndex].transform.rotation = m_Instance.m_DisplayCases[i].transform.rotation;
@@ -121,9 +133,6 @@ public class GameManager : MonoBehaviour
 
         var numPaintingsToSteal = Random.Range(1, numItemsToSteal);
         var numDisplayItemsToSteal = numItemsToSteal - numPaintingsToSteal;
-
-        Debug.Log("Number of paintings to steal = " + numPaintingsToSteal);
-        Debug.Log("Number of display items to steal = " + numDisplayItemsToSteal);
 
         //Tag objective paintings
         for (int i = 0; i < numPaintingsToSteal;)
@@ -156,10 +165,22 @@ public class GameManager : MonoBehaviour
                 i++;
             }
         }
-
+        
+        //List objective items
         foreach (var item in m_Instance.m_ObjectiveItems)
         {
             Debug.Log(item + " is an objective item.");
+        }
+    }
+
+    private void RandomizeGOList(List<GameObject> listToRandomize)
+    {
+        for (int i = 0; i < listToRandomize.Count; i++)
+        {
+            var temp = listToRandomize[i];
+            var randomIndex = Random.Range(i, listToRandomize.Count);
+            listToRandomize[i] = listToRandomize[randomIndex];
+            listToRandomize[randomIndex] = temp;
         }
     }
 }

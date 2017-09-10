@@ -48,7 +48,6 @@ public class PlayerInteract : MonoBehaviour
                 else if (hit.transform.gameObject.CompareTag("StealablePainting") || hit.transform.gameObject.CompareTag("StealableDisplayItem"))
                 {
                     GameManager.DisplayTextHUD("This isn't an objective item.", 2.0f);
-                    Debug.Log("This isn't an objective item.");
                 }
             }
         }
