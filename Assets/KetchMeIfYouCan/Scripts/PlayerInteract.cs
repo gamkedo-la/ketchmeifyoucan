@@ -7,9 +7,13 @@ public class PlayerInteract : MonoBehaviour
 {
     public float m_MaxInteractDistance = 50.0f;
     public List<GameObject> m_StolenObjectiveItems;
-    public bool m_StealingNow = false;
     public GameObject m_StolenItem;
 	public GameObject inventoryMgr;
+
+	//sound variables
+	[SerializeField] AudioSource myAudio;
+	public AudioClip stealPaintingClip;
+	public AudioClip stealCaseClip;
 
 	//UnityStandardAssets.Characters.FirstPerson.FirstPersonController m_playerController;
 
@@ -46,7 +50,15 @@ public class PlayerInteract : MonoBehaviour
 
 					//Disable object being stolen
 					pickedUpItem.SetActive(false);
-                }
+
+					//sound for item stolen
+					/*//Need to assign audio clip to audio source (the audio source will be the stolen object) but can't do this until stealing mechanics work to test, currenctly they don't.
+					if (m_StolenItem.tag == "StealablePainting" || m_StolenItem.tag == "StealableDisplayItem")
+					{
+						myAudio.clip = stealPaintingClip;
+					}
+					myAudio.Play();*/
+				}
                 else if (hit.transform.gameObject.CompareTag("StealablePainting") || hit.transform.gameObject.CompareTag("StealableDisplayItem"))
                 {
                     GameManager.DisplayTextHUD("This isn't an objective item.", 2.0f);

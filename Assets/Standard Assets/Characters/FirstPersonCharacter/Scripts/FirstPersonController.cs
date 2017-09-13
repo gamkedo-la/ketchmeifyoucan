@@ -158,8 +158,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             PlayFootStepAudio();
         }
-
-
+		
         private void PlayFootStepAudio()
         {
             if (!m_CharacterController.isGrounded)
@@ -175,8 +174,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_FootstepSounds[n] = m_FootstepSounds[0];
             m_FootstepSounds[0] = m_AudioSource.clip;
         }
-
-
+		
         private void UpdateCameraPosition(float speed)
         {
             Vector3 newCameraPosition;
