@@ -2,13 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
     public float m_MaxInteractDistance = 50.0f;
+    public float m_InteractTimeAmount = 1.5f;
+    public float m_CurrentInteractTime = 0.0f;
+    public Image m_StealProgressBar;
     public List<GameObject> m_StolenObjectiveItems;
     public GameObject m_StolenItem;
-	public GameObject inventoryMgr;
+    public GameObject inventoryMgr;
 
 	//sound variables
 	[SerializeField] AudioSource myAudio;
@@ -34,7 +38,7 @@ public class PlayerInteract : MonoBehaviour
 
     private void Steal()
     {
-        if (Input.GetButtonDown("Interact"))
+        if (Input.GetButton("Interact"))
         {
             RaycastHit hit;
             
@@ -42,28 +46,52 @@ public class PlayerInteract : MonoBehaviour
             {
                 if (hit.transform.gameObject.CompareTag("ObjectiveItem"))
                 {
-                    //Assign object being stolen
-                    var pickedUpItem = hit.transform.gameObject;
+                    m_StealProgressBar.fillAmount += Time.deltaTime / m_InteractTimeAmount;
 
-                    m_StolenObjectiveItems.Add(pickedUpItem);
-					//inventoryMgr.GetComponent<InventoryMgr>().GetItem(pickedUpItem);//TODO ONCE OBJECTS STEAL WHEN PRESSING INTERACT
+                    if (m_StealProgressBar.fillAmount >= m_InteractTimeAmount / m_InteractTimeAmount)
+                    {
+                        //Assign object being stolen
+                        var pickedUpItem = hit.transform.gameObject;
 
-					//Disable object being stolen
-					pickedUpItem.SetActive(false);
+                        m_StolenObjectiveItems.Add(pickedUpItem);
+                        //inventoryMgr.GetComponent<InventoryMgr>().GetItem(pickedUpItem);//TODO ONCE OBJECTS STEAL WHEN PRESSING INTERACT
 
-					//sound for item stolen
-					/*//Need to assign audio clip to audio source (the audio source will be the stolen object) but can't do this until stealing mechanics work to test, currenctly they don't.
-					if (m_StolenItem.tag == "StealablePainting" || m_StolenItem.tag == "StealableDisplayItem")
-					{
-						myAudio.clip = stealPaintingClip;
-					}
-					myAudio.Play();*/
-				}
+                        //Disable object being stolen
+                        pickedUpItem.SetActive(false);
+
+                        ClearHUDText();
+
+                        //sound for item stolen
+                        /*//Need to assign audio clip to audio source (the audio source will be the stolen object) but can't do this until stealing mechanics work to test, currenctly they don't.
+                        if (m_StolenItem.tag == "StealablePainting" || m_StolenItem.tag == "StealableDisplayItem")
+                        {
+                            myAudio.clip = stealPaintingClip;
+                        }
+                        myAudio.Play();*/
+                    }
+
+                }
                 else if (hit.transform.gameObject.CompareTag("StealablePainting") || hit.transform.gameObject.CompareTag("StealableDisplayItem"))
                 {
+                    m_StealProgressBar.fillAmount = 0.0f;
                     GameManager.DisplayTextHUD("This isn't an objective item.", 2.0f);
                 }
             }
+            else
+            {
+                ClearHUDText();
+            }
         }
+
+        if (Input.GetButtonUp("Interact"))
+        {
+            ClearHUDText();
+        }
+    }
+
+    private void ClearHUDText()
+    {
+        m_StealProgressBar.fillAmount = 0.0f;
+        GameManager.m_Instance.m_HUDText.text = "";
     }
 }

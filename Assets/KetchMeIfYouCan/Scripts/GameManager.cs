@@ -77,6 +77,9 @@ public class GameManager : MonoBehaviour
     
     private void SetupGame()
     {
+        //Clear HUD Text
+        m_Instance.m_HUDText.text = "";
+
         //Find all paintings in level
         m_Instance.m_StealablePaintings = new List<GameObject>(GameObject.FindGameObjectsWithTag("StealablePainting"));
         //Debug.Log("GameManager found " + m_Instance.m_StealablePaintings.Count + " paintings.");
