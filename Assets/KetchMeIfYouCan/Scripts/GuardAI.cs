@@ -20,15 +20,13 @@ public class GuardAI : MonoBehaviour
     //Check FindNextDestintion() for details.
     public Vector3 m_DestinationQueue;
 
-    private GameObject m_Player;
+    //private GameObject m_Player;
     private NavMeshAgent m_nav;
-    private Dialogue m_dialogue;
 
     private void Awake()
     {
-        m_Player = GameObject.FindGameObjectWithTag("Player");
+        //m_Player = GameObject.FindGameObjectWithTag("Player");
         m_nav = GetComponent<NavMeshAgent>();
-        m_dialogue = GetComponent<Dialogue>();
     }
 
     private void Start()
@@ -93,25 +91,13 @@ public class GuardAI : MonoBehaviour
         m_AIState = AIState.Walk;
     }
 
-    //Dialogue is a bit buggy because the couroutine is called various times.
     private IEnumerator WaitBeforeContinuingPatrol()
     {
         var patrolDestinationData = m_PatrolDestinations[m_CurrentPatrolDestination].GetComponent<PatrolDestinationData>();
         //Rotate Guard direction of patrol position gameObject.
         transform.rotation = Quaternion.Slerp(transform.rotation, m_PatrolDestinations[m_CurrentPatrolDestination].transform.localRotation, m_GuardRotationSpeed * Time.deltaTime);
 
-        ////Wait at location.
-        if (m_dialogue != null)
-        {
-            m_dialogue.RunDialogue(patrolDestinationData.m_GuardDialogue);
-        }
-
-        yield return new WaitForSeconds(3.0f);
-
-        if (m_dialogue != null)
-        {
-            m_dialogue.EndDialogue();
-        }
+        yield return new WaitForSeconds(patrolDestinationData.m_WaitTime);
 
         m_AIState = AIState.Choosing;
     }

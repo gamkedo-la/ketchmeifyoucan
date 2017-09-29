@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] m_ObjectiveItems;
     public int m_NumOfObjectiveItems = 3;
 
-    private FirstPersonController m_FPSController;
+    public FirstPersonController m_FPSController;
 
     private void Awake()
     {
@@ -31,9 +31,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Application.targetFrameRate = 60;
-
-        m_FPSController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
+        //Application.targetFrameRate = 60;
     }
 
     private void Start()
@@ -68,7 +66,7 @@ public class GameManager : MonoBehaviour
         //Screen fade effect.
         FadeEffects.Instance.FadeScreen(1, 0.01f);
 
-        yield return new WaitForSeconds(3.0F);
+        yield return new WaitForSeconds(2.0F);
 
         m_Instance.m_HUDText.text = "";
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
