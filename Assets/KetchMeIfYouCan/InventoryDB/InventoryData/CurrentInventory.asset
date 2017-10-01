@@ -13,4 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InventoryItems:
   - {fileID: 11400000, guid: 71ad015618f14af428cc3e384b458461, type: 2}
+  - {fileID: 11400000, guid: cd2fb8e90781d6e4da17ba83972df5e2, type: 2}
+  - {fileID: 11400000, guid: 1fbf2b063a54ad9428b67f817f65d2a3, type: 2}
+  - {fileID: 11400000, guid: 33136a93cfa6fb1459741fa5426209a8, type: 2}
+  - {fileID: 11400000, guid: 3c6037d07b6ca7f498c2353b92be3280, type: 2}
   TotalBagSlots: 12
