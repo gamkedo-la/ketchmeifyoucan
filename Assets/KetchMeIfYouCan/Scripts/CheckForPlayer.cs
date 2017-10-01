@@ -8,10 +8,11 @@ public class CheckForPlayer : MonoBehaviour
 {
     public Text m_HUDText;
     public GameObject m_Guard; //Object from where the Linecast should originate
+    public GuardAI m_GuardAI;
     public GameObject m_Player;
 
     private void Awake() {
-        //m_Player = GameObject.FindGameObjectWithTag("Player");
+        m_GuardAI = m_Guard.GetComponentInParent<GuardAI>();
     }
 
     public void CheckSight()
@@ -22,8 +23,8 @@ public class CheckForPlayer : MonoBehaviour
             Debug.Log(rayHit.collider.transform.name);
             if (rayHit.collider.gameObject == m_Player)
             {
-                //Debug.Log("Caught");
                 GameManager.RestartGame("YOU'VE BEEN CAUGHT");
+                m_GuardAI.m_nav.isStopped = true;
             }
         }
     }

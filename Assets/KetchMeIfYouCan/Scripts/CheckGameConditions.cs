@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class CheckGameConditions : MonoBehaviour
 {
     public PlayerInteract m_playerInteract;
-    public int m_MinLootItems = 3;
     public Text m_HUDText;
 
     private void OnTriggerEnter(Collider other)
