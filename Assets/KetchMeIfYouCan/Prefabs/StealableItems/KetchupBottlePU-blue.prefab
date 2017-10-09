@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 4709464103376694}
   - component: {fileID: 65870602885657556}
   - component: {fileID: 114573426054435352}
+  - component: {fileID: 114140635335573232}
   m_Layer: 0
   m_Name: KetchupBottlePU-blue
   m_TagString: StealableDisplayItem
@@ -193,6 +194,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.07, y: 5.3, z: 1}
   m_Center: {x: 0, y: 3.22, z: 0}
+--- !u!114 &114140635335573232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1997013045797472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052d8f979e5c97448b5cbc28f527b454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 0
+  tooltipDescription: Ketchup bottle
 --- !u!114 &114573426054435352
 MonoBehaviour:
   m_ObjectHideFlags: 1

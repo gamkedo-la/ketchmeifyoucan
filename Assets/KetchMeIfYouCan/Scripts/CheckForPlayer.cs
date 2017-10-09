@@ -6,30 +6,32 @@ using UnityEngine.SceneManagement;
 
 public class CheckForPlayer : MonoBehaviour
 {
-    GameObject m_Player;
-
     public Text m_HUDText;
-    public GameObject m_Body; //Object from where the Linecast should originate
+    public GameObject m_Guard; //Object from where the Linecast should originate
+    public GuardAI m_GuardAI;
+    public GameObject m_Player;
 
     private void Awake() {
-        m_Player = GameObject.FindGameObjectWithTag("Player");
+        m_GuardAI = m_Guard.GetComponentInParent<GuardAI>();
     }
 
     public void CheckSight()
     {
         RaycastHit rayHit;
-        if (Physics.Linecast(m_Body.transform.position, m_Player.transform.position, out rayHit))
+        if (Physics.Linecast(m_Guard.transform.position, m_Player.transform.position, out rayHit))
         {
-            if (rayHit.collider.gameObject.CompareTag("PlayerBody"))
+            Debug.Log(rayHit.collider.transform.name);
+            if (rayHit.collider.gameObject == m_Player)
             {
-                //Debug.Log("Caught");
                 GameManager.RestartGame("YOU'VE BEEN CAUGHT");
+                m_GuardAI.m_nav.isStopped = true;
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name);
         CheckSight();
     }
 }

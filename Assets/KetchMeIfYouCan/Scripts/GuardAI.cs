@@ -16,14 +16,11 @@ public class GuardAI : MonoBehaviour
     public int m_CurrentPatrolDestination = -1;
     public int m_NextPatrolDestination = 0;
     public AIState m_AIState = AIState.Wait;
-
-    private NavMeshAgent m_nav;
-    private Dialogue m_dialogue;
+    public NavMeshAgent m_nav;
 
     private void Awake()
     {
         m_nav = GetComponent<NavMeshAgent>();
-        m_dialogue = GetComponent<Dialogue>();
     }
 
     private void Start()
@@ -49,6 +46,7 @@ public class GuardAI : MonoBehaviour
 
         if (m_AIState == AIState.Choosing)
         {
+            StopAllCoroutines();
             FindNextDestination();
         }
 
@@ -76,14 +74,13 @@ public class GuardAI : MonoBehaviour
     }
 
     private void FindNextDestination()
-    {   
+    {
         //Set nav destination to next position in array.
         m_nav.SetDestination(m_PatrolDestinations[m_NextPatrolDestination].transform.position);
 
         m_AIState = AIState.Walk;
     }
 
-    //Dialogue is a bit buggy because the couroutine is called various times.
     private IEnumerator WaitBeforeContinuingPatrol()
     {
         var patrolDestinationData = m_PatrolDestinations[m_CurrentPatrolDestination].GetComponent<PatrolDestinationData>();
@@ -91,15 +88,7 @@ public class GuardAI : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, m_PatrolDestinations[m_CurrentPatrolDestination].transform.localRotation, m_GuardRotationSpeed * Time.deltaTime);
 
         ////Wait at location.
-        if (m_dialogue != null) {
-            m_dialogue.RunDialogue(patrolDestinationData.m_GuardDialogue);
-        }
-
-        yield return new WaitForSeconds(3.0f);
-
-        if (m_dialogue != null) {
-            m_dialogue.EndDialogue();
-        }
+        yield return new WaitForSeconds(patrolDestinationData.m_WaitTime);
 
         m_AIState = AIState.Choosing;
     }

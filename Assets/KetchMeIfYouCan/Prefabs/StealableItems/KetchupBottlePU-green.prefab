@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4222075036345264}
   - component: {fileID: 65430803905965858}
   - component: {fileID: 114535519048048490}
+  - component: {fileID: 114875569574169684}
   m_Layer: 0
   m_Name: KetchupBottlePU-green
   m_TagString: StealableDisplayItem
@@ -206,3 +207,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   tooltipDescription: This is the green ketchup bottle
+--- !u!114 &114875569574169684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1472057229545248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052d8f979e5c97448b5cbc28f527b454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 0
+  tooltipDescription: Ketchup bottle
