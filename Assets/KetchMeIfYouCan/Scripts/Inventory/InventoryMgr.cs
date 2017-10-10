@@ -25,6 +25,7 @@ public class InventoryMgr : MonoBehaviour
 	public void Awake()
     {
 		BagSpaceText = inventoryPanel.transform.Find("Footer/BagDetails/Stats").GetComponent<Text>();
+
     }
 
     public void Start()
