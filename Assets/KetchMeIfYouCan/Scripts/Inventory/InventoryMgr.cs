@@ -45,14 +45,16 @@ public class InventoryMgr : MonoBehaviour
                 inventoryList.InventoryItems.Add(objectiveItem);
                 UpdateBagSlotsUsed();
 
-            //add it to the UI Screen
-            Transform ScrollViewContent = inventoryPanel.transform.Find("InvPanel/Scroll View/Viewport/Content");
-            GameObject newItem = Instantiate(ItemTemplate, ScrollViewContent);
-            newItem.transform.localScale = Vector3.one;
+                //add it to the UI Screen
+                Transform ScrollViewContent = inventoryPanel.transform.Find("InvPanel/Scroll View/Viewport/Content");
+                GameObject newItem = Instantiate(ItemTemplate, ScrollViewContent);
+                newItem.transform.localScale = Vector3.one;
 
-            newItem.transform.Find("Image/ItemImage").GetComponent<Image>().sprite = objectiveItem.Sprite;
-            newItem.transform.Find("ItemName").GetComponent<Text>().text = objectiveItem.Name;
-            newItem.transform.Find("Description").GetComponent<Text>().text = objectiveItem.Description;
+                newItem.transform.Find("Image/ItemImage").GetComponent<Image>().sprite = objectiveItem.Sprite;
+                newItem.transform.Find("ItemName").GetComponent<Text>().text = objectiveItem.Name;
+                newItem.transform.Find("Description").GetComponent<Text>().text = objectiveItem.Description;
+
+                objectiveItem.UIInventoryPanel = newItem;
             }
         }
     }
@@ -105,7 +107,7 @@ public class InventoryMgr : MonoBehaviour
 
     public void RemoveObjective(GameObject item)
     {
-        Item stolenObjective = worldItems.AvailableWorldItems.Find(x => x.Name.Equals(
+        Item stolenObjective = worldItems.AvailableWorldItems.Find(x => x.name.Equals(
             item.gameObject.name));
 
         //update inventory List removing stolen objective
@@ -113,13 +115,7 @@ public class InventoryMgr : MonoBehaviour
         UpdateBagSlotsUsed();
 
         //remove stolenObjective from the UI Screen
-        Transform ScrollViewContent = inventoryPanel.transform.Find("InvPanel/Scroll View/Viewport/Content");
-        GameObject newItem = Instantiate(ItemTemplate, ScrollViewContent);
-        newItem.transform.localScale = Vector3.one;
-
-        newItem.transform.Find("Image/ItemImage").GetComponent<Image>().sprite = stolenObjective.Sprite;
-        newItem.transform.Find("ItemName").GetComponent<Text>().text = stolenObjective.Name;
-        newItem.transform.Find("Description").GetComponent<Text>().text = stolenObjective.Description;
+        Destroy(stolenObjective.UIInventoryPanel);
     }
 
     public void GetItem(GameObject pickedUpItem)

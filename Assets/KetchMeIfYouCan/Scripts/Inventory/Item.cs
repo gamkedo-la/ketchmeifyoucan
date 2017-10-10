@@ -18,5 +18,5 @@ public class Item : ScriptableObject
     [Tooltip("Item Image that is displayed on the UI")]
     public Sprite Sprite;
 
-   
+    [HideInInspector] public GameObject UIInventoryPanel;
 }

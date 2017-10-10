@@ -59,7 +59,7 @@ public class PlayerInteract : MonoBehaviour
                         pickedUpItem.SetActive(false);
 
                         //remove objective from UI target list
-                        //inventoryMgr.GetComponent<InventoryMgr>().RemoveObjective(pickedUpItem);//TODO SERGIO
+                        inventoryMgr.GetComponent<InventoryMgr>().RemoveObjective(pickedUpItem);//TODO SERGIO
 
                         ClearHUDText();
 
