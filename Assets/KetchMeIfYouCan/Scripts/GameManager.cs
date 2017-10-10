@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         //Screen fade effect.
         FadeEffects.Instance.FadeScreen(1, 0.01f);
 
-        yield return new WaitForSeconds(2.0F);
+        yield return new WaitForSeconds(3.0F);
 
         m_Instance.m_HUDText.text = "";
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

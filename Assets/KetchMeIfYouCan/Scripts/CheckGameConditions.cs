@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class CheckGameConditions : MonoBehaviour
 {
-    public PlayerInteract m_playerInteract;
+    public PlayerInteract m_PlayerInteract;
     public Text m_HUDText;
+    public stopwatchGUI m_StopWatch;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,13 +18,34 @@ public class CheckGameConditions : MonoBehaviour
 
     private void CheckLoot()
     {
-        if (m_playerInteract.m_StolenObjectiveItems.Count >= GameManager.m_Instance.m_NumOfObjectiveItems)
+        if (m_PlayerInteract.m_StolenObjectiveItems.Count >= GameManager.m_Instance.m_NumOfObjectiveItems)
         {
-            GameManager.RestartGame("YOU WIN!");
+            var totalSeconds = Mathf.Round(m_StopWatch.totalTime);
+            var totalTime = "";
+
+            if (totalSeconds < 60)
+            {
+                totalTime = totalSeconds.ToString() + " seconds";
+            }
+            else
+            {
+                var minutes = Mathf.Round(totalSeconds / 60);
+                var seconds = Mathf.Round(totalSeconds % 60);
+                if (minutes > 1)
+                {
+                    totalTime = minutes + " minutes and " + seconds + " seconds";
+                }
+                else
+                {
+                    totalTime = minutes + " minute and " + seconds + " seconds";
+                }
+            }
+
+            GameManager.RestartGame("Congratulations! It took you " + totalTime + " to rob the museum!");
         }
         else
         {
-            GameManager.DisplayTextHUD("YOU ARE MISSING " + (GameManager.m_Instance.m_NumOfObjectiveItems - m_playerInteract.m_StolenObjectiveItems.Count).ToString() + " ITEMS.", 3.0f);
+            GameManager.DisplayTextHUD("YOU ARE MISSING " + (GameManager.m_Instance.m_NumOfObjectiveItems - m_PlayerInteract.m_StolenObjectiveItems.Count).ToString() + " ITEMS.", 3.0f);
         }
     }
 }
