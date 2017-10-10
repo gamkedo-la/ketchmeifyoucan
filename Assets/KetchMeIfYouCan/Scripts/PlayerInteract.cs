@@ -54,10 +54,12 @@ public class PlayerInteract : MonoBehaviour
                         var pickedUpItem = hit.transform.gameObject;
 
                         m_StolenObjectiveItems.Add(pickedUpItem);
-                        //inventoryMgr.GetComponent<InventoryMgr>().GetItem(pickedUpItem);//TODO ONCE OBJECTS STEAL WHEN PRESSING INTERACT
 
                         //Disable object being stolen
                         pickedUpItem.SetActive(false);
+
+                        //remove objective from UI target list
+                        //inventoryMgr.GetComponent<InventoryMgr>().RemoveObjective(pickedUpItem);//TODO SERGIO
 
                         ClearHUDText();
 

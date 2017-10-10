@@ -1889,7 +1889,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh15284
+  m_Name: pb_Mesh27846
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -28273,6 +28273,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4640950676667804, guid: ea21e2725070cd94c8802a44d438d8fc,
     type: 2}
   m_PrefabInternal: {fileID: 1947202802}
+--- !u!1 &1301801650 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1588294638958634, guid: 17631f490487928459ae61412d7e397c,
+    type: 2}
+  m_PrefabInternal: {fileID: 807673350}
 --- !u!1 &1303266337 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1551807175296032, guid: 6bdbd99fcf411b648a921707395239c9,
@@ -34838,6 +34843,8 @@ MonoBehaviour:
   ItemTemplate: {fileID: 1982649418535608, guid: 58cae6414dc63e04eb7e971cb312c6af,
     type: 2}
   worldItems: {fileID: 11400000, guid: 753e678877d93b54fae56db01293dc38, type: 2}
+  gameManager: {fileID: 754956177}
+  playerInteract: {fileID: 1301801650}
 --- !u!1 &1575208608 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1878358150202490, guid: 9c46e011d3faae649999668596a06793,

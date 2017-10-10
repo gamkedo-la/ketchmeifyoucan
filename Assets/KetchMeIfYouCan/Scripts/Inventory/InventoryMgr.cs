@@ -17,17 +17,44 @@ public class InventoryMgr : MonoBehaviour
     private GameObject ItemTemplate;//Inventory Item Container
     [SerializeField]
     public WorldItems worldItems;
+    public GameManager gameManager;
+    public GameObject playerInteract;
 
     private Text BagSpaceText;
     
 	public void Awake()
     {
 		BagSpaceText = inventoryPanel.transform.Find("Footer/BagDetails/Stats").GetComponent<Text>();
-	}
+    }
 
     public void Start()
     {
+        for(int i=0;i<worldItems.AvailableWorldItems.Count;i++)
+        {
+            Debug.Log(" Name world item " + worldItems.AvailableWorldItems[i].name);
+        }
         BagSpaceText.text = string.Format("{0}/{1}", inventoryList.InventoryItems.Count, inventoryList.TotalBagSlots);
+        foreach (var item in gameManager.m_ObjectiveItems)
+        {
+            Debug.Log(item.name + " is an objective item.SERGIO");
+            
+            Item objectiveItem = worldItems.AvailableWorldItems.Find(x => x.name.Equals(
+            item.name));
+            if (objectiveItem != null)
+            {
+                inventoryList.InventoryItems.Add(objectiveItem);
+                UpdateBagSlotsUsed();
+
+            //add it to the UI Screen
+            Transform ScrollViewContent = inventoryPanel.transform.Find("InvPanel/Scroll View/Viewport/Content");
+            GameObject newItem = Instantiate(ItemTemplate, ScrollViewContent);
+            newItem.transform.localScale = Vector3.one;
+
+            newItem.transform.Find("Image/ItemImage").GetComponent<Image>().sprite = objectiveItem.Sprite;
+            newItem.transform.Find("ItemName").GetComponent<Text>().text = objectiveItem.Name;
+            newItem.transform.Find("Description").GetComponent<Text>().text = objectiveItem.Description;
+            }
+        }
     }
     
 	public void UpdateBagSlotsUsed()
@@ -56,7 +83,7 @@ public class InventoryMgr : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             ToggleInventoryWindow();
-        }   
+        }
     }
     private void ToggleInventoryWindow()
     {
@@ -74,6 +101,25 @@ public class InventoryMgr : MonoBehaviour
             Debug.Log(inspectorLiveContainerAsChild.name);
             Destroy(inspectorLiveContainerAsChild.gameObject);
         }
+    }
+
+    public void RemoveObjective(GameObject item)
+    {
+        Item stolenObjective = worldItems.AvailableWorldItems.Find(x => x.Name.Equals(
+            item.gameObject.name));
+
+        //update inventory List removing stolen objective
+        inventoryList.InventoryItems.Remove(stolenObjective);
+        UpdateBagSlotsUsed();
+
+        //remove stolenObjective from the UI Screen
+        Transform ScrollViewContent = inventoryPanel.transform.Find("InvPanel/Scroll View/Viewport/Content");
+        GameObject newItem = Instantiate(ItemTemplate, ScrollViewContent);
+        newItem.transform.localScale = Vector3.one;
+
+        newItem.transform.Find("Image/ItemImage").GetComponent<Image>().sprite = stolenObjective.Sprite;
+        newItem.transform.Find("ItemName").GetComponent<Text>().text = stolenObjective.Name;
+        newItem.transform.Find("Description").GetComponent<Text>().text = stolenObjective.Description;
     }
 
     public void GetItem(GameObject pickedUpItem)
