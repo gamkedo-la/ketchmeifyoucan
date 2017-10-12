@@ -24,20 +24,23 @@ public class InventoryMgr : MonoBehaviour
     
 	public void Awake()
     {
-		BagSpaceText = inventoryPanel.transform.Find("Footer/BagDetails/Stats").GetComponent<Text>();
-
+        ClearInventoryList();
+        BagSpaceText = inventoryPanel.transform.Find("Footer/BagDetails/Stats").GetComponent<Text>();
     }
 
     public void Start()
     {
-        for(int i=0;i<worldItems.AvailableWorldItems.Count;i++)
+        inventoryList.TotalBagSlots=0;
+
+        /*for (int i=0;i<worldItems.AvailableWorldItems.Count;i++)
         {
-            Debug.Log(" Name world item " + worldItems.AvailableWorldItems[i].name);
-        }
-        BagSpaceText.text = string.Format("{0}/{1}", inventoryList.InventoryItems.Count, inventoryList.TotalBagSlots);
+            //Debug.Log(" Name world item " + worldItems.AvailableWorldItems[i].name);
+        }*/
+
+        //map objective items into list and ui objects
         foreach (var item in gameManager.m_ObjectiveItems)
         {
-            Debug.Log(item.name + " is an objective item.SERGIO");
+            //Debug.Log(item.name + " is an objective item.SERGIO");
             
             Item objectiveItem = worldItems.AvailableWorldItems.Find(x => x.name.Equals(
             item.name));
@@ -45,9 +48,11 @@ public class InventoryMgr : MonoBehaviour
             {
                 inventoryList.InventoryItems.Add(objectiveItem);
                 UpdateBagSlotsUsed();
+                //calculate number of targets
+                inventoryList.TotalBagSlots++;
 
-                //add it to the UI Screen
-                Transform ScrollViewContent = inventoryPanel.transform.Find("InvPanel/Scroll View/Viewport/Content");
+                        //add it to the UI Screen
+                        Transform ScrollViewContent = inventoryPanel.transform.Find("InvPanel/Scroll View/Viewport/Content");
                 GameObject newItem = Instantiate(ItemTemplate, ScrollViewContent);
                 newItem.transform.localScale = Vector3.one;
 
@@ -58,6 +63,8 @@ public class InventoryMgr : MonoBehaviour
                 objectiveItem.UIInventoryPanel = newItem;
             }
         }
+        
+        BagSpaceText.text = string.Format("{0}/{1}", inventoryList.InventoryItems.Count, inventoryList.TotalBagSlots);
     }
     
 	public void UpdateBagSlotsUsed()
@@ -94,6 +101,12 @@ public class InventoryMgr : MonoBehaviour
         PopulateInventory(inventoryList);
         inventoryPanel.SetActive(!inventoryPanel.activeSelf);
     }
+
+    public void ClearInventoryList()
+    {
+        inventoryList.InventoryItems = new List<Item>();
+    }
+
 
     public void ClearBufferInventory()
     {

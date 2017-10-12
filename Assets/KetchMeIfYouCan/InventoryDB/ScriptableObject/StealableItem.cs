@@ -9,7 +9,6 @@ using System;
 [CreateAssetMenu(menuName = "Item/Stealable", fileName = "Stealable Item Name")]
 public class StealableItem : Item
 {
-    
 }
 
 
