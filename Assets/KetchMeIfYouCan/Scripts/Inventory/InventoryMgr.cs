@@ -117,12 +117,15 @@ public class InventoryMgr : MonoBehaviour
         Item stolenObjective = worldItems.AvailableWorldItems.Find(x => x.name.Equals(
             item.gameObject.name));
 
+        //remove stolenObjective from the UI Screen
+        //Debug.Log("who is destroyed " + stolenObjective.UIInventoryPanel.name);
+        Destroy(stolenObjective.UIInventoryPanel);
+
         //update inventory List removing stolen objective
         inventoryList.InventoryItems.Remove(stolenObjective);
         UpdateBagSlotsUsed();
 
-        //remove stolenObjective from the UI Screen
-        Destroy(stolenObjective.UIInventoryPanel);
+        
     }
 
     
