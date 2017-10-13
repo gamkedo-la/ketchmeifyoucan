@@ -13,13 +13,13 @@ public class PlayerInteract : MonoBehaviour
     public List<GameObject> m_StolenObjectiveItems;
     public GameObject m_StolenItem;
     public GameObject inventoryMgr;
+    [SerializeField]
+    private Inventory inventoryList;
 
-	//sound variables
-	[SerializeField] AudioSource myAudio;
+    //sound variables
+    [SerializeField] AudioSource myAudio;
 	public AudioClip stealPaintingClip;
 	public AudioClip stealCaseClip;
-
-	//UnityStandardAssets.Characters.FirstPerson.FirstPersonController m_playerController;
 
 	private void Awake()
     {
@@ -59,8 +59,11 @@ public class PlayerInteract : MonoBehaviour
                         pickedUpItem.SetActive(false);
 
                         //remove objective from UI target list
-                        inventoryMgr.GetComponent<InventoryMgr>().RemoveObjective(pickedUpItem);//TODO SERGIO
-
+                        inventoryMgr.GetComponent<InventoryMgr>().RemoveObjective(pickedUpItem);
+                        //update UI if open
+                        inventoryMgr.GetComponent<InventoryMgr>().ClearBufferInventory();
+                        inventoryMgr.GetComponent<InventoryMgr>().PopulateInventory(inventoryList);
+                        
                         ClearHUDText();
 
                         //sound for item stolen

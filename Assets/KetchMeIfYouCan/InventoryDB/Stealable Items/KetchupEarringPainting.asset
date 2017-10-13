@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: KetchupEarringPainting
   m_EditorClassIdentifier: 
   Name: Ketchup Earring Painting
-  Description: Need to update Sprite
+  Description: Earring on a bottle inspired a full generation of artists
   Sprite: {fileID: 21300000, guid: c9e28c904644d5542ac66cc2bbc9f0ee, type: 3}
   UIInventoryPanel: {fileID: 0}

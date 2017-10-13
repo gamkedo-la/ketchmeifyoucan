@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System;
 using UnityEngine.EventSystems;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class InventoryMgr : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class InventoryMgr : MonoBehaviour
     [SerializeField]
     public WorldItems worldItems;
     public GameManager gameManager;
-    public GameObject playerInteract;
+    public FirstPersonController fpc;
 
     private Text BagSpaceText;
     
@@ -26,10 +27,12 @@ public class InventoryMgr : MonoBehaviour
     {
         ClearInventoryList();
         BagSpaceText = inventoryPanel.transform.Find("Footer/BagDetails/Stats").GetComponent<Text>();
+        
     }
 
     public void Start()
     {
+        fpc = GameObject.FindObjectOfType<FirstPersonController>();
         inventoryList.TotalBagSlots=0;
 
         /*for (int i=0;i<worldItems.AvailableWorldItems.Count;i++)
@@ -71,29 +74,19 @@ public class InventoryMgr : MonoBehaviour
 	{
 		BagSpaceText.text = string.Format("{0}/{1}", inventoryList.InventoryItems.Count, inventoryList.TotalBagSlots);
 	}
-
-    public void GetItem(Item addedItem)
-    {
-		//add the item to the player's inventory
-		inventoryList.InventoryItems.Add(addedItem);
-		UpdateBagSlotsUsed();
-
-		//add it to the UI Screen
-		Transform ScrollViewContent = inventoryPanel.transform.Find("InvPanel/Scroll View/Viewport/Content");
-		GameObject newItem = Instantiate(ItemTemplate, ScrollViewContent);
-		newItem.transform.localScale = Vector3.one;
-
-		newItem.transform.Find("Image/ItemImage").GetComponent<Image>().sprite = addedItem.Sprite;
-		newItem.transform.Find("ItemName").GetComponent<Text>().text = addedItem.Name;
-		newItem.transform.Find("Description").GetComponent<Text>().text = addedItem.Description;
-	}
-
+    
 	private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             ToggleInventoryWindow();
+            mouseUnlockDialog();
         }
+    }
+
+    private void mouseUnlockDialog()
+    {
+        //TODO: HOW?
     }
     private void ToggleInventoryWindow()
     {
@@ -114,7 +107,7 @@ public class InventoryMgr : MonoBehaviour
 
         foreach (Transform inspectorLiveContainerAsChild in ScrollViewContent.transform)
         {
-            Debug.Log(inspectorLiveContainerAsChild.name);
+            //Debug.Log(inspectorLiveContainerAsChild.name);
             Destroy(inspectorLiveContainerAsChild.gameObject);
         }
     }
@@ -132,17 +125,7 @@ public class InventoryMgr : MonoBehaviour
         Destroy(stolenObjective.UIInventoryPanel);
     }
 
-    public void GetItem(GameObject pickedUpItem)
-    {
-		Item addedItem = worldItems.AvailableWorldItems.Find(x => x.Name.Equals(
-			pickedUpItem.gameObject.name));
-		
-		Debug.Log("purchItem " + addedItem);
-		GetItem(addedItem);
-		
-        pickedUpItem.SetActive(false);
-    }
-
+    
     public void PopulateInventory(Inventory inventoryList)
     {
         Transform ScrollViewContent = inventoryPanel.transform.Find("InvPanel/Scroll View/Viewport/Content");

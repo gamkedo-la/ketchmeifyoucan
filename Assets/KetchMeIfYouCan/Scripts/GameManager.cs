@@ -62,7 +62,6 @@ public class GameManager : MonoBehaviour
     {
         m_Instance.m_HUDText.text = message;
         m_Instance.m_FPSController.enabled = false;
-
         //Screen fade effect.
         FadeEffects.Instance.FadeScreen(1, 0.01f);
 
