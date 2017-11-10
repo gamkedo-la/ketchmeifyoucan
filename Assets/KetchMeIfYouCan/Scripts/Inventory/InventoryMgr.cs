@@ -124,8 +124,10 @@ public class InventoryMgr : MonoBehaviour
         //update inventory List removing stolen objective
         inventoryList.InventoryItems.Remove(stolenObjective);
         UpdateBagSlotsUsed();
+        ClearBufferInventory();
+        PopulateInventory(inventoryList);
 
-        
+
     }
 
     
